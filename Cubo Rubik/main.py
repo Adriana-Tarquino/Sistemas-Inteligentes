@@ -20,16 +20,24 @@ def load_file(nombre_archivo):
 
     return cube
 
+
+
 if __name__ == "__main__":
    
    archivo = 'Cubo Rubik\\rubik_cube_file.txt'
 
    cube = load_file(archivo)
 
-   for cara in cube:
-      for fila in cara:
-         print(' '.join(fila))
-      print()  # Separador entre caras
+#    for cara in cube:
+#       for fila in cara:
+#          print(' '.join(fila))
+#       print()  # Separador entre caras
+      
+          
+#    validate_cara(cube)
+
+
+    
     
    #  cube = [ 
    #          #white up
