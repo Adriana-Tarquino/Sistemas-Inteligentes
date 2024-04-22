@@ -9,22 +9,23 @@ def load_file(nombre_archivo):
 
     with open(nombre_archivo, 'r') as archivo:
         for linea in archivo:
-            fila = linea.strip().split()
-            if not fila:
-                cube.append(cara)
-                cara = []
-            else:
+            # Eliminar espacios en blanco alrededor de la línea y verificar si es una cadena no vacía
+            linea = linea.strip()
+            if linea:  
+                fila = linea.split()
                 cara.append(fila)
+            else:
+                # Si la línea está vacía, agregamos la cara actual al cubo si tiene al menos una fila
+                if cara:
+                    cube.append(cara)
+                    cara = []
 
-    cube.append(cara)  
-
+    # Añadir la última cara si quedó pendiente
+    if cara:
+        cube.append(cara)
+        
     return cube
 
-
-def validate_cara__2(cube):
-    print(cube[1])
-    
-    
 
 
 if __name__ == "__main__":
@@ -33,45 +34,13 @@ if __name__ == "__main__":
 
    cube = load_file(archivo)
 cuboe = RubiksCube(cube)
+
+# cuboe.color_cube()
+
+cuboe.show_cube()
+
 Validator(cuboe).validate_color()
-#    for cara in cube:
-#       for fila in cara:
-#          print(' '.join(fila))
-#       print()  # Separador entre caras
+
       
           
-validate_cara__2(cube)
 
-
-    
-    
-   #  cube = [ 
-   #          #white up
-   #           [ ['W','W','W'],
-   #             ['W','W','W'],
-   #             ['W','W','W']  ],
-   #          #green front
-   #           [ ['G','G','G'],
-   #             ['G','G','G'],
-   #             ['G','G','G']  ],
-   #          #red right
-   #          [  ['R','R','R'],
-   #             ['R','R','R'],
-   #             ['R','R','R']  ],
-   #          #blue back
-   #          [  ['B','B','B'],
-   #             ['B','B','B'],
-   #             ['B','B','B']  ],
-   #          #orange left
-   #          [  ['O','O','O'],
-   #             ['O','O','O'],
-   #             ['O','O','O']  ],
-   #          #yelow down
-   #          [  ['Y','Y','Y'],
-   #             ['Y','Y','Y'],
-   #             ['Y','Y','Y']  ],
-            
-   #          ]
-   #  RubiksCube(cube)
-    
-    
