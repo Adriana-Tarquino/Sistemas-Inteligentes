@@ -34,12 +34,10 @@ if __name__ == "__main__":
 
    cube = load_file(archivo)
 cuboe = RubiksCube(cube)
-
-# cuboe.color_cube()
-
-cuboe.show_cube()
-
-Validator(cuboe).validate_color()
+cuboe.assemble()
+cuboe.rotate_face_clockwise('front')  # Por ejemplo, rotar la cara frontal en sentido de las manecillas del reloj
+cuboe.show_cube_with_caras()  # Mostrar el estado actual del cubo
+   
 
       
           
