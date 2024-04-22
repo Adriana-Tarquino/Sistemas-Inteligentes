@@ -1,4 +1,4 @@
-from RubiksCube import RubiksCube
+from RubiksCube import RubiksCube, Validator
 # strip() ->  Para elimnar espacios en blanco
 # split() -> para dividt la linea en una lista de elementos 
 #(si la linea esta vacia entonces quiere decir que termino una cara del cubo)
@@ -21,20 +21,26 @@ def load_file(nombre_archivo):
     return cube
 
 
+def validate_cara__2(cube):
+    print(cube[1])
+    
+    
+
 
 if __name__ == "__main__":
    
    archivo = 'Cubo Rubik\\rubik_cube_file.txt'
 
    cube = load_file(archivo)
-
+cuboe = RubiksCube(cube)
+Validator(cuboe).validate_color()
 #    for cara in cube:
 #       for fila in cara:
 #          print(' '.join(fila))
 #       print()  # Separador entre caras
       
           
-#    validate_cara(cube)
+validate_cara__2(cube)
 
 
     

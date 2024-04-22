@@ -6,10 +6,6 @@ G G G
 G G G
 G G G
 
-R R R
-R R R
-R R R
-
 B B B
 B B B
 B B B
@@ -17,6 +13,10 @@ B B B
 O O O
 O O O
 O O O
+
+R R R
+R R R
+R R R
 
 Y Y Y
 Y Y Y
