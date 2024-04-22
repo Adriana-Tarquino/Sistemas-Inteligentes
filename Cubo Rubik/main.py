@@ -30,16 +30,14 @@ def load_file(nombre_archivo):
 
 if __name__ == "__main__":
    
-   archivo = 'Cubo Rubik\\rubik_cube_file.txt'
+   archivo = 'Cubo Rubik\\rubik_cube_file_2.txt'
 
    cube = load_file(archivo)
-cuboe = RubiksCube(cube)
-cuboe.assemble()
-cuboe.rotate_face_clockwise('front') 
-cuboe.show_face('front')  # Mostrar el estado actual del cubo
+   cuboe = RubiksCube(cube)
+   cuboe.assemble()
 print("------------------------------------------------")
-cuboe.rotate_face_counter_clockwise('front')  # Por ejemplo, rotar la cara frontal en sentido de las manecillas del reloj
-cuboe.show_face('front')  # Mostrar el estado actual del cubo
+cuboe.rotate_x_clockwise()
+cuboe.show_faces()  # Mostrar el estado actual del cubo
    
 
       

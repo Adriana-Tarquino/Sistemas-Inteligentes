@@ -44,6 +44,7 @@ class RubiksCube:
     def __init__(self, cube):
         self.cube = cube    
         self.caras = {}
+        
                
     def count_caras(self):
         return len(self.cube)
@@ -67,7 +68,15 @@ class RubiksCube:
                 print(' '.join(row))
             print()  # Separador entre caras
     
-    
+    def show_faces(self):
+        print("Current state of the cube:")
+        for face, content in self.caras.items():
+            print(face)
+            for row in content:
+                print(' '.join(row))
+            print()  # Separador entre caras
+
+
     def show_cube(self):
         for cara in self.cube:
             for row in cara:
@@ -82,13 +91,31 @@ class RubiksCube:
         rotated_face = self.caras[face]
         rotated_face = [list(row)[::-1] for row in zip(*rotated_face)]
         self.caras[face] = rotated_face
-
+        
     def rotate_face_counter_clockwise(self, face):
         transposed_face = list(zip(*self.caras[face]))
         print(transposed_face)
         rotated_face = transposed_face[::-1]
         print(rotated_face)
         self.caras[face] = rotated_face
-
+        
     
-   
+    def U(self, face):
+        # Movimiento U: Rotar LA FILA de la cara actual en el sentido de las manecillas del reloj
+        # self.rotate_face_clockwise(face)
+        rotated_row = self.caras[face][0]  # Acceder a la fila superior de la cara especificada
+        print(rotated_row)
+        if face == 'front':
+            self.caras[face][0] = self.caras['right'][0]  #white
+        if face == 'right':
+            self.caras[face][0] = self.caras['back'][0]  #green
+        if face == 'left':
+            self.caras[face][0] = self.caras['front'][0] #blue
+        if face == 'up':
+            self.caras[face][0] = self.caras['right'][0]  #red
+        if face == 'down':
+            self.caras[face][0] = self.caras['front'][0] #orange
+        if face == 'back':
+            self.caras[face][0] = self.caras['front'][0] #yellow
+
+  

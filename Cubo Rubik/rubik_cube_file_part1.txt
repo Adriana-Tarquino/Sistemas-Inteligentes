@@ -1,0 +1,15 @@
+1W 2W 3W    1G 2G 3G    1B 2B 3B
+4W 5W 6W    4G 5G 6G    4B 5B 6B
+7W 8W 9W    7G 8G 9G    7B 8B 9B
+
+2O 2O 3O    1R 2R 3R    1Y 2Y 3Y 
+4O 5O 6O    4R 5R 6R    4Y 5Y 6Y
+7O 8O 9O    7R 8R 9R    7Y 8Y 9Y
+
+
+
+
+
+
+
+
