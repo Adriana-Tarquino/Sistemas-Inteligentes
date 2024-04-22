@@ -35,8 +35,11 @@ if __name__ == "__main__":
    cube = load_file(archivo)
 cuboe = RubiksCube(cube)
 cuboe.assemble()
-cuboe.rotate_face_clockwise('front')  # Por ejemplo, rotar la cara frontal en sentido de las manecillas del reloj
-cuboe.show_cube_with_caras()  # Mostrar el estado actual del cubo
+cuboe.rotate_face_clockwise('front') 
+cuboe.show_face('front')  # Mostrar el estado actual del cubo
+print("------------------------------------------------")
+cuboe.rotate_face_counter_clockwise('front')  # Por ejemplo, rotar la cara frontal en sentido de las manecillas del reloj
+cuboe.show_face('front')  # Mostrar el estado actual del cubo
    
 
       

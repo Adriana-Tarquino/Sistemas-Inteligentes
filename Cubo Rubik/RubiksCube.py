@@ -39,9 +39,6 @@ class Validator(object):
           print("Error: Dimensions of cube")
    
 
-# class Move(object):
-#     def 
-
 
 class RubiksCube:
     def __init__(self, cube):
@@ -53,8 +50,6 @@ class RubiksCube:
     
     def get_cube(self):
         return self.cube
-    
-    # def pieces(self):
 
     def assemble(self):
         self.caras['front'] = self.cube[0]
@@ -78,8 +73,22 @@ class RubiksCube:
             for row in cara:
                 print(' '.join(row))
             print()  # Separador entre caras    
+            
+    def show_face(self, face):
+        for row in self.caras[face]:
+            print(' '.join(row))
         
     def rotate_face_clockwise(self, face): #Rotar una cara del cubo en el sentido de las manecillas del reloj
         rotated_face = self.caras[face]
         rotated_face = [list(row)[::-1] for row in zip(*rotated_face)]
         self.caras[face] = rotated_face
+
+    def rotate_face_counter_clockwise(self, face):
+        transposed_face = list(zip(*self.caras[face]))
+        print(transposed_face)
+        rotated_face = transposed_face[::-1]
+        print(rotated_face)
+        self.caras[face] = rotated_face
+
+    
+   

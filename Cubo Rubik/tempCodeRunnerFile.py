@@ -1,2 +1,1 @@
-shape = (len(cube), len(cube[0]), len(cube[0][0]))
-print("Dimensiones de la matriz:", shape)
+rotate_face_counter_clockwise
