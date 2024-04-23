@@ -1,32 +1,27 @@
 from rubiks_cube import RubiksCube
 from validator import Validator
+from moves_cube import *
+from assamble import *
+
 # strip() ->  Para elimnar espacios en blanco
 # split() -> para dividt la linea en una lista de elementos 
 #(si la linea esta vacia entonces quiere decir que termino una cara del cubo)
-
 def load_file(nombre_archivo):
     cube = []
     cara = []
 
     with open(nombre_archivo, 'r') as archivo:
         for linea in archivo:
-            # Eliminar espacios en blanco alrededor de la línea y verificar si es una cadena no vacía
-            linea = linea.strip()
-            if linea:  
-                fila = linea.split()
-                cara.append(fila)
+            fila = linea.strip().split()
+            if not fila:
+                cube.append(cara)
+                cara = []
             else:
-                # Si la línea está vacía, agregamos la cara actual al cubo si tiene al menos una fila
-                if cara:
-                    cube.append(cara)
-                    cara = []
+                cara.append(fila)
 
-    # Añadir la última cara si quedó pendiente
-    if cara:
-        cube.append(cara)
-        
+    cube.append(cara)  
+
     return cube
-
 
 def print_menu():
     cube = load_file(archivo)
@@ -60,7 +55,7 @@ def print_menu():
 
 if __name__ == "__main__":
     
-    archivo = 'Cubo Rubik\\rubik_cube_file_2.txt'
+    archivo = 'Mini project Rubik Cube\\Files\\rubik_cube_file_2.txt'
     # print_menu()    
     cube = load_file(archivo)
     Cubo_R = RubiksCube(cube)
@@ -69,9 +64,16 @@ if __name__ == "__main__":
     print("------------------------------------------------")
     # print(Cubo_R.U())
     # Cubo_R.show_cube()
-    Cubo_R.intersections_edge()
-    
+    cubo_mov = Moves(Cubo_R)
+    cubo_mov.U_prime()
+    Cubo_R.show_cube(Cubo_R.get_cube())
+    Cubo_R.show_cube(Cubo_R.get_goal_cube())
+    # cubo_mov.D_prime()
 
-        
+    # cubo_mov.get_faces()
+    asambl = Assamble(Cubo_R)    
+    print(asambl.manhattan_distance())
+    asambl.solve()
+
             
 
