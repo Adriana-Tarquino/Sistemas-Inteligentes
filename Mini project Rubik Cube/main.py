@@ -7,38 +7,36 @@ from assamble import *
 # split() -> para dividt la linea en una lista de elementos 
 #(si la linea esta vacia entonces quiere decir que termino una cara del cubo)
 def load_file(nombre_archivo):
-    cube = []
-    cara = []
+    cube = [[[None for _ in range(3)] for _ in range(3)] for _ in range(6)]
 
     with open(nombre_archivo, 'r') as archivo:
+        current_face = 0
+        current_row = 0
         for linea in archivo:
             fila = linea.strip().split()
             if not fila:
-                cube.append(cara)
-                cara = []
+                current_face += 1
+                current_row = 0
             else:
-                cara.append(fila)
-
-    cube.append(cara)  
+                cube[current_face][current_row] = fila
+                current_row += 1
 
     return cube
 
-def print_menu():
-    cube = load_file(archivo)
-    Cubo_R = RubiksCube(cube)
-    validator = Validator(Cubo_R)
-    print("1. Validate Cube")
-    print("2. Validate adjacents")
-    print("3. Validate center")
-    print("4. Validate color")
-    print("5. Validate dimensions")
-    print("6. Exit")
+
+def validate_cube_menu(cube):
+    validator = Validator(cube)
     while True:
-        print("\nRubik's Cube Validation Menu:")
+        print("\nValidation Menu:")
+        print("1. Validate Cube")
+        print("2. Validate Adjacents")
+        print("3. Validate Center")
+        print("4. Validate Color")
+        print("5. Validate Dimensions")
+        print("6. Return to Main Menu")
         choice = input("Enter your choice: ")
         if choice == "1":
             validator.validate_cara()
-            break
         elif choice == "2":
             validator.validate_adjacents()
         elif choice == "3":
@@ -48,32 +46,55 @@ def print_menu():
         elif choice == "5":
             validator.validate_dimensions()
         elif choice == "6":
-            print("Exiting...")
+            print("Returning to Main Menu...")
             break
         else:
             print("Invalid choice. Please enter a valid option.")
 
-if __name__ == "__main__":
-    
-    archivo = 'Mini project Rubik Cube\\Files\\rubik_cube_file_2.txt'
-    # print_menu()    
+def main_menu():
     cube = load_file(archivo)
     Cubo_R = RubiksCube(cube)
     
-    # Cubo_R.assemble()
-    print("------------------------------------------------")
-    # print(Cubo_R.U())
-    # Cubo_R.show_cube()
-    cubo_mov = Moves(Cubo_R)
-    cubo_mov.U_prime()
-    Cubo_R.show_cube(Cubo_R.get_cube())
-    Cubo_R.show_cube(Cubo_R.get_goal_cube())
-    # cubo_mov.D_prime()
-
-    # cubo_mov.get_faces()
-    asambl = Assamble(Cubo_R)    
-    print(asambl.manhattan_distance())
-    asambl.solve()
-
+    while True:
+        print("\nMain Menu:")
+        print("1. Disassemble Cube")
+        print("2. Validate Cube")
+        print("3. Calculate Manhattan Distance")
+        print("4. Solve Cube")
+        print("5. Exit")
+        choice = input("Enter your choice: ")
+        
+        if choice == "1":
+            cubo_mov = Moves(Cubo_R)
+            cubo_mov.U()
+            cubo_mov.get_faces()
             
+        elif choice == "2":
+            Cubo_R.show_cube()
+            validate_cube_menu(Cubo_R)
+            
+        elif choice == "3":
+            cubo_mov = Moves(Cubo_R)
+            distance = cubo_mov.manhattan_distance(Cubo_R.get_cube())
+            print(f"\nDistance: {distance}")
+            
+        elif choice == "4":
+            cubo_mov = Moves(Cubo_R)
+            solution = cubo_mov.solve()
+            if solution:
+                print("\nSolution Steps:")
+                for step, move in solution:
+                    print(f"Step {step}: {move}")
+            else:
+                print("\nNo solution found.")
+                
+        elif choice == "5":
+            print("Exiting...")
+            break
 
+        else:
+            print("Invalid choice. Please enter a valid option.")
+
+if __name__ == "__main__":
+    archivo = 'Mini project Rubik Cube\\Files\\rubik_cube_file_2.txt'
+    main_menu()

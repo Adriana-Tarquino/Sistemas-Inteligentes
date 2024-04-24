@@ -67,12 +67,19 @@ class RubiksCube:
             self.center.append(center) 
         
 
-    def show_cube(self,cube):
-        for cara in cube:
+    def show_cube(self):
+        for cara in self.cube:
             for row in cara:
                 print(' '.join(row))
             print()  # Separador entre caras    
-            
+
+    
+    def show_cube_goal(self, cube):
+        for cara in cube:
+            for row in cara:
+                print(' '.join(row))
+            print()  # Separador entre caras   
+
     #only face        
     def show_face(self, face):
         for row in self.caras[face]:

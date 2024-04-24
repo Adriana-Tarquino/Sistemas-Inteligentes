@@ -12,6 +12,7 @@ class Validator(object):
             if center_color in centers:
                 print("Error: Duplicated center:", center_color)
             centers.add(center_color)
+
     
     def validate_adjacents(self):
         #cara, row, center
@@ -24,7 +25,7 @@ class Validator(object):
     def validate_cara(self):
         if self.cube.count_caras() != 6:
             print("Error: Invalid missing rubik's cube face")
-            
+            print( self.cube.count_caras())
     def validate_color(self):
         for cara in self.cube.get_cube():
             for row in cara:
@@ -33,7 +34,7 @@ class Validator(object):
 
     def validate_dimensions(self):
         shape = (len(self.cube.get_cube()), len(self.cube.get_cube()[0]), len(self.cube.get_cube()[0][0]))
-        # print("Dimensions of cube:", shape)   
+        print("Dimensions of cube:", shape)   
         if shape != (6, 3, 3):
           print("Error: Dimensions of cube")
    
